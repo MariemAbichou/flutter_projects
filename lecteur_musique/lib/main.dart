@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'music.dart';
-import "package:audioplayer/audioplayer.dart";
+import 'package:audioplayer/audioplayer.dart';
 
 //------Enumation
 enum ActionMusic {play, pause, rewind, forward}
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "BimBamBoom Music",
+      title: "Smart Music Player",
       theme: ThemeData(primarySwatch: Colors.red),
       debugShowCheckedModeBanner: false,
       home:HomePage(),
@@ -37,9 +37,11 @@ class _HomePageState extends State<HomePage> {
 
   //----VARIABLES
   List<Music> listOfMusic = [
-    Music("Bim Bam toi", "Carla", "images/img1.jpg",
-        "https://youtu.be/pjJ2w1FX_Wg"),
-    Music("Cabeza", "OBOY", "imagePath", "https://youtu.be/lEfkziQSmZI"),
+    Music("Bim Bam toi", "Carla", "images/img1.jpg", "https://luan.xyz/files/audio/ambient_c_motion.mp3"),
+    Music("Papaoutai", "Stromae", "images/img2.jpg", "https://luan.xyz/files/audio/nasa_on_a_mission.mp3"),
+    Music("Tourner Dans Le Vide", "Indila", "images/img3.jpg", "https://youtu.be/vtNJMAyeP0s"),
+    Music("On ira", "Stromae", "images/img4.jpg", "https://youtu.be/8IjWHBGzsu4"),
+
   ];
   Music currentlyMusic;
   AudioPlayer audioPlayer;
@@ -49,11 +51,13 @@ class _HomePageState extends State<HomePage> {
   Duration position = Duration(seconds: 0);
   Duration duration = Duration(seconds: 10);
   PlayerState statut =PlayerState.stopped;
+  int index = 0;
 
 
   @override initState() {
     super.initState();
-    currentlyMusic = listOfMusic[0];
+    currentlyMusic = listOfMusic[index];
+    configurationAudioPlayer();
   }
 
   @override
@@ -69,12 +73,13 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 10,
-        title: Text("BimBamBoom Music"),
+        title: Text("Smart Music Player"),
         //widget.title
         centerTitle: true,
         leading: Icon(Icons.music_note),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.grey[900],
       ),
+      backgroundColor: Colors.grey[800],
       body: Center(
         child: Container(
           color: Colors.black54,
@@ -86,42 +91,39 @@ class _HomePageState extends State<HomePage> {
               Card(
                 elevation: 18.0,
                 child: Container(
-                  //height: _height/3,
                   width: _height / 3,
-                  child: Image.asset(listOfMusic[0].imagePath),
+                  child: Image.asset(currentlyMusic.imagePath),
                 ),
               ),
-              myTextWithStyle(listOfMusic[0].title, 1.4),
-              myTextWithStyle(listOfMusic[0].artist, 1.1),
+              myTextWithStyle(currentlyMusic.title, 1.5),
+              myTextWithStyle(currentlyMusic.artist, 1.1),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   iconButton(Icons.fast_rewind, 30.0, ActionMusic.rewind),
-                  iconButton(Icons.play_arrow, 45.0, ActionMusic.play),
+                  iconButton((statut==PlayerState.playing)?Icons.pause:Icons.play_arrow, 45.0, (statut == PlayerState.playing) ? ActionMusic.pause:ActionMusic.play),
                   iconButton(Icons.fast_forward, 30.0, ActionMusic.forward),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  myTextWithStyle('0:0', 0.8),
-                  myTextWithStyle('0:22', 0.8),
+                  myTextWithStyle(fromDuration(position), 0.8),
+                  myTextWithStyle(fromDuration(duration), 0.8),
                 ],
               ),
 
               new Slider(
                 value: position.inSeconds.toDouble(),
-                max: 100,
-                //longueur de morceau
                 min: 0,
+                max: 30,    //TO DO/ CHANGE longueur de morceau
                 activeColor: Colors.red,
                 inactiveColor: Colors.blueAccent,
                 //onChanged: pour mettre à jour la position de lecture du morceau de musique
                 onChanged: (double d) {
                   setState(() {
-                    Duration newDuration = Duration(seconds: d.toInt());
-                    position = newDuration;
+                    audioPlayer.seek(d);
                   });
                 },
               ),
@@ -153,18 +155,21 @@ class _HomePageState extends State<HomePage> {
           switch (action) {
             case ActionMusic.play:
               print("play");
+              play();
               break;
             case ActionMusic.pause:
               print("pause");
+              pause();
               break;
             case ActionMusic.rewind:
               print("rewind");
+              rewind();
               break;
             case ActionMusic.forward:
               print("forward");
+              forward();
               break;
           }
-          //setState(() {time = time -5;});
         }
     );
   }
@@ -189,9 +194,54 @@ class _HomePageState extends State<HomePage> {
                 duration=Duration(seconds: 0);
                 position=Duration(seconds: 0);
               });
-
             }
-
-    );
+            );
   }
+
+//---- Function4: play music
+Future play() async {
+    await audioPlayer.play(currentlyMusic.urlSong);
+    setState(() {
+      statut=PlayerState.playing;
+    });
+}
+//---- Function5: pause music
+  Future pause() async {
+    await audioPlayer.pause();
+    setState(() {
+      statut=PlayerState.paused;
+    });
+  }
+// --- fonction pour passer au morceau suivant
+void forward(){
+    if (index== listOfMusic.length-1){index=0;}
+    else {index++;}
+    currentlyMusic=listOfMusic[index];
+    audioPlayer.stop();
+    configurationAudioPlayer();
+    play();
+}
+//---------
+  void rewind() {
+    if (position > Duration(seconds: 3)) {
+      audioPlayer.seek(0.0);
+    } else {
+      if (index == 0) {
+        index = listOfMusic.length - 1;
+      } else {
+        index--;
+      }
+      currentlyMusic = listOfMusic[index];
+      audioPlayer.stop();
+      configurationAudioPlayer();
+      play();
+    }
+  }
+  //---------
+  String fromDuration(Duration duree) {
+    print(duree);
+    return duree.toString().split('.').first;
+  }
+
+//----fin---
 }
