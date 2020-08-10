@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'music.dart';
 import 'package:audioplayer/audioplayer.dart';
+//---documentation: https://pub.dev/documentation/audioplayers/latest/
 
 //------Enumation
 enum ActionMusic {play, pause, rewind, forward}
@@ -37,7 +38,7 @@ class _HomePageState extends State<HomePage> {
 
   //----VARIABLES
   List<Music> listOfMusic = [
-    Music("Bim Bam toi", "Carla", "images/img1.jpg", "https://luan.xyz/files/audio/ambient_c_motion.mp3"),
+    Music("Bim Bam toi", "Carla", "images/img1.jpg", "https://www.youtube.com/watch?v=vtNJMAyeP0s"),
     Music("Papaoutai", "Stromae", "images/img2.jpg", "https://luan.xyz/files/audio/nasa_on_a_mission.mp3"),
     Music("Tourner Dans Le Vide", "Indila", "images/img3.jpg", "https://youtu.be/vtNJMAyeP0s"),
     Music("On ira", "Stromae", "images/img4.jpg", "https://youtu.be/8IjWHBGzsu4"),
@@ -49,7 +50,7 @@ class _HomePageState extends State<HomePage> {
   StreamSubscription stateSub;
 
   Duration position = Duration(seconds: 0);
-  Duration duration = Duration(seconds: 10);
+  Duration duration = Duration(seconds: 186);
   PlayerState statut =PlayerState.stopped;
   int index = 0;
 
@@ -72,7 +73,8 @@ class _HomePageState extends State<HomePage> {
         .height;
     return Scaffold(
       appBar: AppBar(
-        elevation: 10,
+        elevation: 100,
+
         title: Text("Smart Music Player"),
         //widget.title
         centerTitle: true,
@@ -188,7 +190,7 @@ class _HomePageState extends State<HomePage> {
               if (state == AudioPlayerState.PLAYING){setState(() {  duration=audioPlayer.duration; });}
               else if (state == AudioPlayerState.STOPPED){setState(() {  statut=PlayerState.stopped; });}
             }, onError: (message){
-              print("error: $message");
+              print("/!\ error: $message");
               setState(() {
                 statut=PlayerState.stopped;
                 duration=Duration(seconds: 0);
