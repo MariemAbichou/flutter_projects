@@ -194,7 +194,7 @@ class _HomePageState extends State<HomePage> {
               setState(() {
                 statut=PlayerState.stopped;
                 duration=Duration(seconds: 0);
-                position=Duration(seconds: 0);
+                position=Duration(seconds: 50);
               });
             }
             );
