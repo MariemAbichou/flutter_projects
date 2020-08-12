@@ -22,14 +22,14 @@ class _FrenchayArmTestState extends State<FrenchayArmTest> {
 
   _FrenchayArmTestState(Patient patient);
 
-  Evaluation _eval= new Evaluation("Frenchay Arm Test", "Cette évaluation de l’extrémité supérieure permet de vérifier l’utilisation du bras et d'associer amplitudes passives, tonus musculaire, examen de la douleur, dynamométrie de la pince pouce-index.", 0);
+  Evaluation _eval= new Evaluation("Quiz", "Introduction to Computer Security", 0);
   Question question;
   List<Question> listeQuestions = [
-    new Question("Stabiliser la règle sur le papier quand on trace un trait avec un crayon tenu par l’autre main.", true, '', 'img1.JPG'),
-    new Question("Saisir le cylindre.", true, '','img2.jpg'),
-    new Question("Porter un verre à moitié rempli d’eau à la bouche et boire dedans.", true, '', 'img3.jpg'),
-    new Question("Retirer et replacer une pince à linge sur un bâton de10 mm de diamètre.", true, '', 'img4.jpg'),
-    new Question("Se peigner les cheveux ou imiter le geste.", true, '', 'img5.jpg'),
+    new Question("An advance-fee fraud attack involves the interceptionof cryptographic elements to determine keys and encryption algorithms.", false, '', 'img1.JPG'),
+    new Question("Much human error or failure can be prevented with effective training and ongoing awareness activities", true, '','img2.jpg'),
+    new Question("A worm requires that another program is running before it can begin functioning.", false, '', 'img3.jpg'),
+    new Question("Information security’s primary mission is to ensure that systems and their contents retain their confidentiality at any cost.", false, '', 'img4.jpg'),
+    new Question("With the removal of copyright protection mechanisms, software can be easily distributed and installed.", true, '', 'img5.jpg'),
   ];
   int _index=0;
   int _score=0;

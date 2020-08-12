@@ -58,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           );
 
                           },
-                        child:Text( "Commencez l'évaluation",style: TextStyle(color:Colors.white), )
+                        child:Text( "Start the quiz",style: TextStyle(color:Colors.white), )
                     ),
                   ]),)
 
@@ -67,22 +67,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
             Divider(),
             CustomTextForTitle('Description'),
-            CustomTextForDescription("Cette évaluation de l’extrémité supérieure permet de vérifier l’utilisation du bras et d'associer amplitudes passives, tonus musculaire, examen de la douleur, dynamométrie de la pince pouce-index.",
+            CustomTextForDescription("This is a quick quiz in Computer Security",
                 ),
 
             Divider(),
-            CustomTextForTitle("Matériel nécessaire:"),
-            CustomTextForDescription("""
-    - Crayon en graphite ou stylo, règle, feuille de papier
-    - Cylindre (12 mm x 5 cm)
-    - Gobelet
-    - Pince à linge à ressort
-    - bâton de 10 mm de diamètre
-    - Peigne à cheveux. """),
-            Divider(),
+
             Column(children: <Widget>[
-              CustomTextForTitle("Référence"),
-              CustomTextForDescription(" Heller A, Wade DT, Wood VA, Sunderland A, Langton-Hewer R, Ward E. Arm function after stroke : measurement and recovery after the first three months. J Neurol Neurosurg Psychiatry 1987 ; 50 : 714-9"),
+              CustomTextForTitle("Reference:"),
+              CustomTextForDescription(" https://www.studocu.com/en-us/document/new-york-city-college-of-technology/computer-systems-management-and-support/other/quiz2-sol-class-quiz-solution-with-questions/3507936/view"),
             ],),
           ],
         ),

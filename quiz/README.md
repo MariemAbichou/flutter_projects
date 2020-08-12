@@ -1,4 +1,4 @@
-![Optional Text](Frenchay_arm_test.jpg)
+![Optional Text](home.jpg)
 # Frenchay Arm Test
 
 C'est un outil utilisé par les Kinésithérapeutes pour faciliter l'évaluation de leurs patients.
