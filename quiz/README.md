@@ -1,8 +1,9 @@
 ![Optional Text](Frenchay_arm_test.jpg)
 # Frenchay Arm Test
-C'est un test d'évaluation fonctionnelle de l’AVC.
-C'est une évaluation de l’extrémité supérieure.
-Elle permet de vérifier l’utilisation du bras et d'associer amplitudes passives, tonus musculaire, examen de la douleur, dynamométrie de la pince pouce-index.
+
+C'est un outil utilisé par les Kinésithérapeutes pour faciliter l'évaluation de leurs patients.
+Frenchay Arm Test est une évaluation fonctionnelle des patients (en particulier les victimes d'un Accident vasculaire cérébral (AVC).
+Ce Test permet de vérifier l’utilisation du bras et d'associer amplitudes passives, tonus musculaire, examen de la douleur, dynamométrie de la pince pouce-index.
 
 ## Ref
 
