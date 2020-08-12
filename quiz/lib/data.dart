@@ -1,4 +1,3 @@
-import 'file:///C:/My_Workspace/__ProjetsPratiques__/MesProjets-Flutter/quiz/lib/models/question.dart';
 import 'models/patient.dart';
 
 

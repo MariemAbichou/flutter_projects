@@ -26,7 +26,7 @@ class _FrenchayArmTestState extends State<FrenchayArmTest> {
   Question question;
   List<Question> listeQuestions = [
     new Question("Stabiliser la règle sur le papier quand on trace un trait avec un crayon tenu par l’autre main.", true, '', 'img1.JPG'),
-    new Question("Saisir le cylindre.", true, '','img5.jpg'),
+    new Question("Saisir le cylindre.", true, '','img2.jpg'),
     new Question("Porter un verre à moitié rempli d’eau à la bouche et boire dedans.", true, '', 'img3.jpg'),
     new Question("Retirer et replacer une pince à linge sur un bâton de10 mm de diamètre.", true, '', 'img4.jpg'),
     new Question("Se peigner les cheveux ou imiter le geste.", true, '', 'img5.jpg'),
