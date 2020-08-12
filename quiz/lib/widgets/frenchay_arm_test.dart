@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz/models/evaluation.dart';
-import 'package:quiz/models/patient.dart';
+import 'package:quiz/models/player.dart';
 import 'package:quiz/models/question.dart';
 import 'package:quiz/widgets/custom_text.dart';
 import 'package:quiz/widgets/my_app.dart';
@@ -10,17 +10,17 @@ import 'package:quiz/widgets/my_home.dart';
 import '../data.dart';
 
 class FrenchayArmTest extends StatefulWidget {
-  Patient patient;
+  Patient player;
 
-  FrenchayArmTest({Key key, this.patient}) : super(key: key);
+  FrenchayArmTest({Key key, this.player}) : super(key: key);
 
   @override
-  _FrenchayArmTestState createState() => _FrenchayArmTestState(this.patient);
+  _FrenchayArmTestState createState() => _FrenchayArmTestState(this.player);
 }
 
 class _FrenchayArmTestState extends State<FrenchayArmTest> {
 
-  _FrenchayArmTestState(Patient patient);
+  _FrenchayArmTestState(Patient player);
 
   Evaluation _eval= new Evaluation("Quiz", "Introduction to Computer Security", 0);
   Question question;
@@ -48,7 +48,7 @@ class _FrenchayArmTestState extends State<FrenchayArmTest> {
         title: Row(children: <Widget>[
           Text("Frenchay arm test",textScaleFactor: 1,),
           Spacer(),
-          Text("patient ${widget.patient.name}",style: TextStyle(color: Colors.amberAccent,fontStyle: FontStyle.italic,),textScaleFactor: 0.7,),
+          Text("player ${widget.player.name}",style: TextStyle(color: Colors.amberAccent,fontStyle: FontStyle.italic,),textScaleFactor: 0.7,),
         ],)
       ),
 
@@ -84,8 +84,8 @@ class _FrenchayArmTestState extends State<FrenchayArmTest> {
                       else if (_index==listeQuestions.length-1) {
                         //_index=0;
                        // _eval.score=_score;
-                        //widget.patient.listEvaluation.add(_eval);
-                        //print(widget.patient.listEvaluation[0].score);
+                        //widget.player.listEvaluation.add(_eval);
+                        //print(widget.player.listEvaluation[0].score);
 
                         showDialog(
                             context: context,
@@ -93,7 +93,7 @@ class _FrenchayArmTestState extends State<FrenchayArmTest> {
                             builder: (BuildContext context) {
                               return CupertinoAlertDialog(
                                 title: Text("Bravo !"),
-                                content:Text("Vous avez ajouté l'évaluation à votre patient ${widget.patient.name}.\n Son score est $_score /5 \n Vous confirmez ce résultat?") ,
+                                content:Text("Vous avez ajouté l'évaluation à votre player ${widget.player.name}.\n Son score est $_score /5 \n Vous confirmez ce résultat?") ,
                                 actions: <Widget>[
                                   CupertinoDialogAction(child: Text("Oui",),  onPressed: () {
                                     Navigator.of(context).pop();
@@ -102,7 +102,7 @@ class _FrenchayArmTestState extends State<FrenchayArmTest> {
                                   }, ),
                                   CupertinoDialogAction(child: Text("Non, Je souhaite refaire le test",),  onPressed: () {
                                     Navigator.of(context).pop();
-                                    Navigator.push( context,MaterialPageRoute( builder: (context) => FrenchayArmTest(patient: patient1)),);
+                                    Navigator.push( context,MaterialPageRoute( builder: (context) => FrenchayArmTest(player: player1)),);
 
                                   }, ),
 
@@ -129,7 +129,7 @@ class _FrenchayArmTestState extends State<FrenchayArmTest> {
                       else if (_index==listeQuestions.length-1) {
                         //_index=0;
                         //_eval.score=_score;
-                       // widget.patient.listEvaluation.add(_eval);
+                       // widget.player.listEvaluation.add(_eval);
                         showDialog(
                             context: context,
                             barrierDismissible: true,
@@ -140,7 +140,7 @@ class _FrenchayArmTestState extends State<FrenchayArmTest> {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
 
-                                  Text("Vous avez évaluaer votre patient ${widget.patient.name}.") ,
+                                  Text("Vous avez évaluaer votre player ${widget.player.name}.") ,
 
                                   Text("\n Son score est : $_score /5 ") ,
 
@@ -155,7 +155,7 @@ class _FrenchayArmTestState extends State<FrenchayArmTest> {
 
                                   CupertinoDialogAction(child: Text("Non, Je souhaite refaire le test",),  onPressed: () {
                                     Navigator.of(context).pop();
-                                    Navigator.push( context,MaterialPageRoute( builder: (context) => FrenchayArmTest(patient: patient1)),);
+                                    Navigator.push( context,MaterialPageRoute( builder: (context) => FrenchayArmTest(player: player1)),);
 
                                   }, ),
 

@@ -1,26 +1,26 @@
 
 import 'package:flutter/material.dart';
-import 'package:quiz/models/patient.dart';
+import 'package:quiz/models/player.dart';
 import '../data.dart';
 import 'custom_text.dart';
 import 'frenchay_arm_test.dart';
 
 class MyHomePage extends StatefulWidget {
   final String title;
-  Patient patient;
+  Patient player;
 
-  MyHomePage({Key key, this.title,this.patient}) : super(key: key);
+  MyHomePage({Key key, this.title,this.player}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => _MyHomePageState(this.patient);
+  _MyHomePageState createState() => _MyHomePageState(this.player);
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   int _nbrQuestions = 5;
   int _index=0;
-  Patient _patient;
+  Patient _player;
   //constructeur
-  _MyHomePageState(Patient patient);
+  _MyHomePageState(Patient player);
 
   void _incrementIndex() {
     if (_index<_nbrQuestions){setState(() { _index++; });}
@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => FrenchayArmTest(patient: patient1),
+                              builder: (context) => FrenchayArmTest(player: player1),
                             ),
                           );
 
