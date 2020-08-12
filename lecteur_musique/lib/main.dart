@@ -38,16 +38,18 @@ class _HomePageState extends State<HomePage> {
 
   //----VARIABLES
   List<Music> listOfMusic = [
-    Music("Bim Bam toi", "Carla", "images/img1.jpg", "https://www.youtube.com/watch?v=vtNJMAyeP0s"),
+    Music("Bim Bam toi", "Carla", "images/img1.jpg", "https://luan.xyz/files/audio/nasa_on_a_mission.mp3"),
     Music("Papaoutai", "Stromae", "images/img2.jpg", "https://luan.xyz/files/audio/nasa_on_a_mission.mp3"),
-    Music("Tourner Dans Le Vide", "Indila", "images/img3.jpg", "https://youtu.be/vtNJMAyeP0s"),
-    Music("On ira", "Stromae", "images/img4.jpg", "https://youtu.be/8IjWHBGzsu4"),
+    Music("Tourner Dans Le Vide", "Indila", "images/img3.jpg", "https://luan.xyz/files/audio/nasa_on_a_mission.mp3"),
+    Music("On ira", "Stromae", "images/img4.jpg", "https://luan.xyz/files/audio/nasa_on_a_mission.mp3"),
 
   ];
   Music currentlyMusic;
   AudioPlayer audioPlayer;
   StreamSubscription positionSub;
   StreamSubscription stateSub;
+
+  double sliderdouble=0.0;
 
   Duration position = Duration(seconds: 0);
   Duration duration = Duration(seconds: 186);
@@ -115,16 +117,21 @@ class _HomePageState extends State<HomePage> {
                   myTextWithStyle(fromDuration(duration), 0.8),
                 ],
               ),
+              Text("progress $sliderdouble"),
 
               new Slider(
+
+                //value: sliderdouble,
                 value: position.inSeconds.toDouble(),
                 min: 0,
-                max: 30,    //TO DO/ CHANGE longueur de morceau
+                max: 30, //TO DO/ CHANGE longueur de morceau
+                divisions: 10,
                 activeColor: Colors.red,
                 inactiveColor: Colors.blueAccent,
                 //onChanged: pour mettre à jour la position de lecture du morceau de musique
                 onChanged: (double d) {
                   setState(() {
+                    //sliderdouble=d;
                     audioPlayer.seek(d);
                   });
                 },
