@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                 //value: sliderdouble,
                 value: position.inSeconds.toDouble(),
                 min: 0,
-                max: 30, //TO DO/ CHANGE longueur de morceau
+                max: 94, //TO DO/ CHANGE longueur de morceau
                 divisions: 10,
                 activeColor: Colors.red,
                 inactiveColor: Colors.blueAccent,
